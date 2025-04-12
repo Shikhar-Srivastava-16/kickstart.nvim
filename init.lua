@@ -184,6 +184,16 @@ vim.opt.rtp:prepend(lazypath)
 -- require('lazy').setup { { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' } }
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
+  {
+    'oxfist/night-owl.nvim',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      -- load the colorscheme here
+      require('night-owl').setup()
+      vim.cmd.colorscheme 'night-owl'
+    end,
+  },
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
